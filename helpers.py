@@ -6,7 +6,7 @@ import os
 from random import choice
 import requests
 
-gis = GoogleImagesSearch('AIzaSyCrBweCSMeZybW-TM18-wHay85ZiwfYvew', '22fed8160f8634eca')
+gis = GoogleImagesSearch(, )
 wotd = potd = {"title": "error"}
 
 def login_required(f):
@@ -25,7 +25,7 @@ def fetch_word(word):
     
     url = "https://twinword-word-graph-dictionary.p.rapidapi.com/definition/?entry=" + word
     url_diff = "https://twinword-word-graph-dictionary.p.rapidapi.com/difficulty/?entry=" + word
-    header = {"x-rapidapi-key": "4bc37fb47cmsh69359cf16c12ce8p1dcc10jsn88bef5d578d3",
+    header = {"x-rapidapi-key": ,
               "x-rapidapi-host": "twinword-word-graph-dictionary.p.rapidapi.com"}
     
     response = requests.get(url, headers=header).json()
