@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Practice
+{% endblock %}
+
+{% block main %}
+
+<div class="island quiz-island">
+    <div class="island-header">
+        Choose the correct option
+    </div>
+
+    <div class="island-body">
+        <div class="quiz">
+            Pick the option that correctly fits its definition <br><br>
+
+            Definition: {{ definition }} <br><br> 
+            <form>
+                {% for option in options | add_to_set(ans) %}
+                    <input type="radio" id="{{option}}" name="opt" style="display:none">
+                    <label for="{{option}}" class="option"> {{option}} </label> <br>
+                {% endfor %}
+                <input type="reset" class="quiz-button">
+                <button class="quiz-button" type="button" id="50/50" onclick='lifeline({{opt_list | tojson | safe}})'> 50/50 <br> <sub> <span>5 <img src="/static/lingo.png"></span></sub></button> 
+                <a id="next"><button class="quiz-button" type="button" id="submit" onclick='quiz_submit("{{ans}}")'> Submit </button></a>
+            </form>
+        </div>
+        <div style="display:none" id="correct" class="quiz-result">{{ans}} is correct!</div>
+        <div style="display:none" id="wrong" class="quiz-result">The correct answer is {{ans}}</div>
+    </div>
+</div>
+<script src='static/scripts.js'></script>
+{% endblock %}

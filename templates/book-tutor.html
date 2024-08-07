@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Book Tutor
+{% endblock %}
+
+{% block main %}
+
+<div class="island index-search-island">
+    <div class="island-header">
+        Book Search
+    </div>
+
+    <div class="island-body">
+        <form action="/book-tutor" method="post">
+            <input type="text" placeholder="Search for a book..." class="word-search" name="title">
+        </form>
+    </div>  
+</div>
+
+<div class="island bookshelf-island">
+    <div class="island-header">
+        Bookshelf
+    </div>
+
+    <div class="island-body">
+    {% for book in books %}
+    <a href="/practice?book={{book}}"> 
+    <img src="static/covers/{{book}}.jpg" onerror="this.style.display='none'"> {{book}} </a> 
+    {% endfor %}
+    </div> 
+</div>
+
+{% endblock %}

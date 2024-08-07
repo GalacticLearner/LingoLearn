@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+    <head>
+
+        <meta name="viewport" content="initial-scale=1, width=device-width" charset="utf-8">
+        <link rel="stylesheet" href="/static/styles.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu|Poppins">
+        <link rel="icon" href="/static/icon.png" type="image/x-icon" >
+        <title> {% block title %}{% endblock %} </title>
+        
+    </head>
+
+    <body>
+
+        <div class='navbar'>
+
+        <ul>
+            <li id='icon'><a href='/'> <img src='/static/icon.png' alt='icon'> </a></li>
+            <li> <a href='/practice'> Practice </a> <div class="semi-circle"></div></li>
+            <li> <a href='/bookmarks'> Bookmarks </a> <div class="semi-circle", style="width:120px"></div></li>
+            <li> <a href='/book-tutor'> Book Tutor </a> <div class="semi-circle", style="width:120px"></div></li>
+        </ul>
+        
+        
+        {% if logged_in | default(false) %}
+        <ul id="user">
+            <li> <div class="lingo"><img src="/static/lingo.png" class="lingologo"> &nbsp; {{lingos}} </div></li>
+            <li id="signout"> <a href='/signout'> {{username}} </a> <div> sign out </div> </li>
+        </ul>
+        {% else %}
+        <ul id="sign">
+            <li> <a href="/signin"> Sign In </a> </li>
+            <li> <a href="/signup"> Sign Up </a> </li>
+        </ul>
+        {% endif %}
+
+        </div>
+
+        {% block main %}{% endblock %}
+
+    </body>
+
+</html>

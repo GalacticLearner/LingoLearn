@@ -1,0 +1,147 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    LingoLearn
+{% endblock %}
+
+{% block main %}
+<script src='static/scripts.js'></script>
+
+    <div class="island wotd-island">
+        <div class="island-header">
+            Word of the Day
+        </div>
+
+        <div class="island-body">
+            <div class="wotd-potd">
+            <h1>{{wotd["word"]}}</h1>
+            {% set meanings = wotd["meanings"] %}
+            
+            {% for part_of_speech in meanings %}
+                <h2>{{part_of_speech["partOfSpeech"]}}</h2>
+
+                {% for definition in part_of_speech["definitions"] %}
+                    {% if loop.first %}
+                        {{ definition["definition"] }} <br>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="island index-search-island">
+        <div class="island-header">
+            Word Search
+        </div>
+
+        <div class="island-body">
+            <form action="/" method="post">
+                <input type="text" placeholder="Look up a word or a phrase..." class="word-search" name="word">
+            </form>
+
+            {% if word_data %}
+            <form action="/" method="POST">
+                <input style="display:none" value="{{query}}" name="bookmark">
+                <input type="image" src="static/bookmark1.png" class="bookmark">
+            </form>
+
+            {% if bookmark | default(false) %}
+            <script>bookmark("image", "bookmark");</script>
+            {% endif %}
+            {% endif %}
+
+            <div class="word">
+                {% if not error %}
+                {% if api == "dapi" %}
+                <h1>{{word_data["word"]}}</h1>
+                
+                {% set meanings = word_data["meanings"] %}
+                {% for part_of_speech in meanings %}
+                    <h2>{{part_of_speech["partOfSpeech"]}}</h2>
+                    {% set definition_no = namespace(value=1) %}
+
+                    {% for definition in part_of_speech["definitions"] %}
+                    {{definition_no.value}}. {{definition["definition"]}} <br>
+                    {% if "example" in definition %}
+                        Usage: {{definition["example"]}} <br>
+                    {% endif %} 
+                    {% if definition["synonyms"] %}
+                        Synonyms:
+                        {% for synonym in definition["synonyms"] %}
+                        {{synonym}}{% if not loop.last %}, {% endif %}
+                        {% endfor %} <br>
+                    {% endif %} 
+                    {% if definition["antonyms"] %}
+                        Antonyms:
+                        Synonyms:
+                        {% for antonym in definition["antonyms"] %}
+                        {{antonym}} {% if not loop.last %},{% endif %}
+                        {% endfor %} <br>
+                    {% endif %} 
+                    {% set definition_no.value = definition_no.value + 1 %} <br>
+                    {% endfor %}
+
+                {% endfor %}
+
+                {% if meanings[0]["synonyms"] %}
+                    Synonyms:
+                    {% for synonym in meanings[0]["synonyms"] %}
+                    {{synonym}}{% if not loop.last %}, {% endif %}
+                    {% endfor %} <br>
+                {% endif %}
+                {% if meanings[0]["antonyms"] %}
+                    Antonyms:
+                    {% for antonym in meanings[0]["antonyms"] %}
+                    {{antonym}}{% if not loop.last %}, {% endif %}
+                    {% endfor %} <br>
+                {% endif %} 
+                {% endif %}
+
+                {% if api == "tw" %}
+                    <h1> {{word_data["entry"]}}</h1>
+                    {% for part_of_speech in word_data["meaning"] %}
+                        {% if word_data["meaning"][part_of_speech] %}
+                        <h2>{{part_of_speech}}</h2>
+                        {% set definition_no = namespace(value=1) %}
+                        {% for definition in word_data["meaning"][part_of_speech] | split %}
+                        {{definition_no.value}}. {{definition | refine}}
+                        {% set definition_no.value = definition_no.value + 1 %} <br>
+                        {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+                {% else %}
+                    <h4> Word not Found </h4>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="island potd-island">
+        <div class="island-header">
+            Phrase of the Day
+        </div>
+
+        <div class="island-body">
+            <div class="wotd-potd">
+            <h1>{{potd["word"]}}</h1>
+            {% set meanings = potd["meanings"] %}
+            
+            {% for part_of_speech in meanings %}
+                <h2>{{part_of_speech["partOfSpeech"]}}</h2>
+
+                {% set break = true %}
+                {% for definition in part_of_speech["definitions"] %}
+                    {% if break == true %}
+                        {{definition["definition"]}} <br>
+                        {% set break = false %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Bookmarks
+{% endblock %}
+
+{% block main %}
+
+    <div style="display:flex; flex-wrap: wrap;">
+
+    {% for bookmark in word_data %}
+    {% set word = word_data[bookmark] %}
+        <div class="word-island">
+        {% if not bookmark %}
+        No bookmarks yet
+        {% endif %}
+        <b> {{bookmark}} </b> <br><br>
+        {% if word[1] == "tw" %}
+            {% for part_of_speech in word[0]["meaning"] %}
+                {% if word[0]["meaning"][part_of_speech] %}
+                <b> {{part_of_speech}} </b> <br>
+                {{ (word[0]["meaning"][part_of_speech] | split)[0] | refine}} <br><br>
+                {% endif %} 
+            {% endfor %}
+        {% else %}
+            {% set meanings = word[0]["meanings"] %}
+        {% for part_of_speech in meanings %}
+            <b>{{part_of_speech["partOfSpeech"]}}</b><br>
+            {% set break = False %}
+            {% for definition in part_of_speech["definitions"] %}
+            {% if break == False %}
+            {{definition["definition"]}} <br>
+            {% set break = True %}
+            {% endif %}
+            {% endfor %}
+        {% endfor %}
+        {% endif %}
+        </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}

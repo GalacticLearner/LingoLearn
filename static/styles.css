@@ -1,0 +1,395 @@
+/*general */
+body 
+{   
+    margin: 0;
+    background-image: url("/static/bg2.png");
+    background-size: cover;
+}
+
+/* navigation bar */
+.navbar
+{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    background-color: #9400f7;
+    justify-content: flex-start;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 5;
+}
+
+.navbar > ul 
+{   
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar > ul > li:not(#icon)
+{
+    font: 18px Ubuntu;
+    margin-left: 20px;
+    margin-right: 10px;
+    padding: 10px 30px;
+}
+
+.navbar > ul > li
+{
+    position: relative;
+    margin-left: 40px;
+    margin-right: 10px;
+    padding: 10px 0px 10px 0px;
+}
+
+.navbar a, .bookshelf-island a
+{   
+    color: white;
+    text-decoration: none;
+    position: relative;
+    left: 5px;
+    margin: 0;
+    padding: 0;
+    z-index: 6;
+    justify-content: center;
+    text-align: center;
+}
+
+.navbar > ul > li:hover:not(#icon), li:hover:not(#icon) a, li:hover .semi-circle
+{   
+    color: black;
+    text-decoration: none;
+    visibility: visible;
+}
+
+.navbar > #icon
+{
+    margin-right: auto;
+    margin-left: 30px;
+    padding: 0;
+}
+
+.navbar img
+{
+    width: 60px;
+    padding: 0;
+}
+
+.navbar #signout div
+{
+    display: none;
+    position: absolute; /* wo position absolute, og text is shifted as two elements are in an li. absolute doesn't disturb og text's position*/
+    top: 100%;
+    left: 0;
+}
+
+.navbar #signout:hover div
+{
+    display: block;
+    background-color: #02ff96;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* islands */
+.island
+{
+    position: absolute;
+    margin: 10px 10px 10px 10px;
+    z-index: 0;
+    color: white;
+}
+
+.island-header
+{   
+    display: flex;
+    background-color: #40006b;
+    font: 18px Ubuntu;
+    height: 40px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    align-items: center;
+    padding-left: 15px;
+}
+
+.island-body
+{
+    background-color: #9400f7;
+    font: 12px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+}
+
+.error-island
+{   
+    display: flex;
+    position: absolute;
+    height: 30px;
+    width: 350px;
+    border-radius: 10px;
+    margin: 10px;
+    left: -10px;
+    background-color: #02ff96;
+    color: black;
+    font: 18px Ubuntu;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-search-island
+{
+    left: 300px;
+    width: 750px;
+}
+
+.wotd-island
+{
+    left: 0px;
+    width: 240px;
+}
+
+.potd-island
+{
+    right: 0px;
+    width: 240px;
+}
+
+.sign-island
+{   
+    left: 500px;
+    width: 350px;
+}
+
+.quiz-island
+{
+    left: 450px;
+    width: 450px;
+}
+
+.word-island
+{  
+    background-color: #9400f7;
+    color: white;
+    display: inline-block;
+    left: 20px;
+    width: 630px;
+    font: 20px Ubuntu;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.bookshelf-island
+{
+    top: 250px;
+    left: 30px;
+}
+
+.bookshelf-island img
+{   
+    display: block;
+    margin: 20px;
+    width: 150px;
+    height: 225px;
+}
+
+.bookshelf-island a
+{
+    display: inline-block;
+    font: 18px Ubuntu;
+    padding: 10px;
+}
+
+/* forms */
+.sign-input
+{   
+    margin: 10px;
+    width: 300px;
+    height: 30px;
+    border-radius: 50px;
+    padding-left: 10px;
+    font-family: Ubuntu;
+}
+
+.sign-submit
+{   
+    margin: 10px auto 10px 130px;
+    width: 80px;
+    height: 40px;
+    border-radius: 50px;
+    font: 16px Ubuntu;
+    background-color: #40006b;
+    color: white
+}
+
+.sign-submit:hover
+{
+    background-color: #02ff96;
+    color: black;
+}
+
+.word-search
+{
+    height: 30px;
+    width: 600px;
+    margin: 20px auto 20px 63px;
+    padding-left: 10px;
+    border-radius: 50px;
+    font: 16px Ubuntu;
+}
+
+.quiz-button
+{
+    width: 132px;
+    height: 75px;
+    border-radius: 10px;
+    background-color: #02ff96;
+    font: 20px Poppins;
+    vertical-align: bottom;
+}
+
+.quiz-button:hover
+{
+    background-color: #40006b;
+    color: white;
+}
+
+.quiz-button span
+{
+    display: none;
+}
+
+.quiz-button:hover span
+{
+    display: block;
+}
+
+.quiz-button img
+{
+    width: 15px;
+}
+
+.bookmark
+{   
+    color: white;
+    position: absolute;
+    top: 150px;
+    left: 85%;
+    width: 40px;
+}
+
+/* elements */
+.word
+{   
+    font-family: Poppins;
+    margin: 0 40px 10px 60px;
+    padding-bottom: 20px;
+}
+
+.wotd-potd
+{   
+    font-family: Poppins;
+    margin: 0 20px 20px 10px;
+}
+
+.quiz
+{
+    padding: 10px 10px 10px 20px;
+    font-family: Poppins;
+}
+
+.option
+{   
+    display: block;
+    color: black;
+    width: 390px;
+    height: 30px;
+    padding: 2px 10px 1px 10px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+input:checked + .option
+{   
+    color: white;
+    background-color: #40006b;
+}
+
+.correct-option
+{   
+    display: block;
+    color: black;
+    width: 390px;
+    height: 30px;
+    padding: 2px 10px 1px 10px;
+    border-radius: 10px;
+    background-color: #02ff96;
+}
+
+.wrong-option
+{   
+    display: block;
+    color: black;
+    width: 390px;
+    height: 30px;
+    padding: 2px 10px 1px 10px;
+    border-radius: 10px;
+    background-color: #fa2f2f;
+}
+
+.quiz-result
+{   
+    display: block;
+    font: 18px Ubuntu;
+    color: black;
+    width: 390px;
+    height: 30px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    padding: 2px 10px 0px 10px;
+    border-radius: 10px;
+    text-align: center;
+    align-items: center;
+    background-color: #02ff96;
+}
+
+.lingo
+{
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.lingologo
+{
+    width: 40px !important;
+}
+
+/* aesthetics */
+.semi-circle
+{   
+    margin-top: 20px;
+    position: absolute;
+    top: -40px;
+    left: 20px;
+    visibility: hidden;
+    height: 0px;
+    width: 100px;
+    border-width: 5px;
+    border-color: #9400f7;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+    background-color: #02ff96;
+    transition: 0.2s ease;
+}
+
+li:hover .semi-circle
+{
+    height: 100px;
+}

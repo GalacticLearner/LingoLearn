@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sign In
+{% endblock %}
+
+{% block main %}
+
+    <div class="island sign-island">
+        <div class="island-header">
+            Sign In
+        </div>
+        <div class="island-body" style="height: 200px">
+            <form action="/signin" method="post">
+            <input name="username" placeholder="Username" type="text" class="sign-input">
+            <input name="password" placeholder="Password" type="password" class="sign-input">
+            <button type="submit" class="sign-submit"> Sign In </button>
+            </form>
+        </div>
+
+    {% if error | default(false) %}
+        <div class="error-island">
+            {{ error }}
+        </div>
+    {% endif %}
+    
+    </div>
+
+{% endblock %}
