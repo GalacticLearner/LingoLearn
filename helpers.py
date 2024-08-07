@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 from flask import redirect, render_template, request, session
 from functools import wraps
 from google_images_search import GoogleImagesSearch
@@ -6,8 +7,9 @@ import os
 from random import choice
 import requests
 
-gis = GoogleImagesSearch(, )
+gis = GoogleImagesSearch(os.getenv('google_api_key'), os.getenv('search_engine_cx') )
 wotd = potd = {"title": "error"}
+load_dotenv()
 
 def login_required(f):
     @wraps(f)
@@ -25,7 +27,7 @@ def fetch_word(word):
     
     url = "https://twinword-word-graph-dictionary.p.rapidapi.com/definition/?entry=" + word
     url_diff = "https://twinword-word-graph-dictionary.p.rapidapi.com/difficulty/?entry=" + word
-    header = {"x-rapidapi-key": ,
+    header = {"x-rapidapi-key": os.getenv('rapidapi_key'),
               "x-rapidapi-host": "twinword-word-graph-dictionary.p.rapidapi.com"}
     
     response = requests.get(url, headers=header).json()
