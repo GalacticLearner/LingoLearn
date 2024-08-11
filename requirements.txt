@@ -2,7 +2,6 @@ APScheduler
 flask
 mysql-connector-python
 werkzeug
-functools
 google-images-search
 gutenbergpy
 requests
