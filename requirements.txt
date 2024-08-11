@@ -6,3 +6,4 @@ functools
 google-images-search
 gutenbergpy
 requests
+python-dotenv
