@@ -4,5 +4,6 @@ mysql-connector-python
 werkzeug
 google-images-search
 gutenbergpy
+gunicorn
 requests
 python-dotenv
