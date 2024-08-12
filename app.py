@@ -15,7 +15,7 @@ load_dotenv()
 filters = {"split": splitlines, "refine": refine, "add_to_set": add_to_set}
 app.jinja_env.filters.update(filters)
 
-connection = connect(user="sql12725528", host = "sql12.freesqldatabase.com", password=os.getenv(sql_password), database="sql12725528")
+connection = connect(user="sql12725528", host = "sql12.freesqldatabase.com", password=os.getenv("sql_password"), database="sql12725528")
 database = connection.cursor(buffered=True)
 
 scheduler = BackgroundScheduler()
