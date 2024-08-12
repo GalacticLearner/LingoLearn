@@ -1,17 +1,21 @@
 from apscheduler.schedulers.background import BackgroundScheduler
+from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, request, session
 from helpers import *
 from mysql.connector import connect
+import os
 from random import choice
 from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
 app.secret_key = "\xb3Xk\xe8ji\x05^\xd4\xce\xe3\x1c"
 
+load_dotenv()
+
 filters = {"split": splitlines, "refine": refine, "add_to_set": add_to_set}
 app.jinja_env.filters.update(filters)
 
-connection = connect(user='root', host = 'localhost', password='07170', database='vocab_builder')
+connection = connect(user="sql12725528", host = "sql12.freesqldatabase.com", password=os.getenv(sql_password), database="sql12725528")
 database = connection.cursor(buffered=True)
 
 scheduler = BackgroundScheduler()
