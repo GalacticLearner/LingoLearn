@@ -15,7 +15,7 @@ load_dotenv()
 filters = {"split": splitlines, "refine": refine, "add_to_set": add_to_set}
 app.jinja_env.filters.update(filters)
 
-connection = connect(user="LingoBase_bandbelong", host = "1wjdw.h.filess.io", password=os.getenv("sql_password"), database="LingoBase_bandbelong")
+connection = connect(user="LingoBase_bandbelong", host = "1wjdw.h.filess.io", password=os.getenv("sql_password"), database="LingoBase_bandbelong", port="3307")
 database = connection.cursor(buffered=True)
 
 scheduler = BackgroundScheduler()
